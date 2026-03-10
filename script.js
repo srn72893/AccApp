@@ -9,13 +9,17 @@ startBut.addEventListener("click", async () => {
 
         //デバッグ用
         console.log("permission : ", res);
-        
+
         //許可なければ終了
         if (res !== "granted") return;
     }
 
     //センサーイベントを取得し、表示する
     window.addEventListener("devicemotion", viewAcc);
+
+    //ボタン無効化
+    startBut.disabled = true;
+    startBut.innerText = "計測中...";
 });
 
 /**
@@ -28,7 +32,7 @@ function viewAcc(event) {
     if (!acc) return;
 
     //HTML id="指定のid" のタグの中身を書き換える
-    document.getElementById("x").textContent = "x : " + acc.x;
-    document.getElementById("y").textContent = "y : " + acc.y;
-    document.getElementById("z").textContent = "z : " + acc.z;
+    document.getElementById("x").textContent = "x : " + acc.x.toFixed(2);
+    document.getElementById("y").textContent = "y : " + acc.y.toFixed(2);
+    document.getElementById("z").textContent = "z : " + acc.z.toFixed(2);
 }
