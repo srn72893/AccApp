@@ -6,6 +6,10 @@ startBut.addEventListener("click", async () => {
     if (typeof DeviceMotionEvent.requestPermission === "function") {
         //アクセス許可されるまで待つ
         const res = await DeviceMotionEvent.requestPermission();
+
+        //デバッグ用
+        console.log("permission : ", res);
+        
         //許可なければ終了
         if (res !== "granted") return;
     }
